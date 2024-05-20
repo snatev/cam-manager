@@ -1,5 +1,5 @@
 import cv2
-from main import CamManager
+from cam_manager import CamManager
 
 cm = CamManager()
 
