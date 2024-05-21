@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    version = "0.1.1",
+    version = "0.1.2",
     name = "cam_manager",
     description = "A camera management library to easily handle cameras with OpenCV.",
 

@@ -7,7 +7,7 @@ class CamManager:
         self.cams = {}
         self.active_cam_id = None
 
-    def list_available_cams(self) -> list:
+    def list_available_cams(self, capture_method = cv2.CAP_DSHOW) -> list:
         """
         List all available camera devices.
 
@@ -17,7 +17,7 @@ class CamManager:
         index = 0
         arr = []
         while True:
-            cap = cv2.VideoCapture(index, cv2.CAP_DSHOW)
+            cap = cv2.VideoCapture(index, capture_method)
             if not cap.isOpened(): break
 
             arr.append(index)
@@ -25,7 +25,7 @@ class CamManager:
             index += 1
         return arr
 
-    def add_cam(self, cam_id: int) -> None:
+    def add_cam(self, cam_id: int, capture_method = cv2.CAP_DSHOW) -> None:
         """
         Add a cam by its ID.
 
@@ -34,7 +34,7 @@ class CamManager:
         """
 
         if cam_id not in self.cams:
-            cap = cv2.VideoCapture(cam_id, cv2.CAP_DSHOW)
+            cap = cv2.VideoCapture(cam_id, capture_method)
             if not cap.isOpened(): print(f"Failed to open cam [{cam_id}].")
             else:
                 self.cams[cam_id] = cap
