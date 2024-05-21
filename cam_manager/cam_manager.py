@@ -7,6 +7,24 @@ class CamManager:
         self.cams = {}
         self.active_cam_id = None
 
+    def list_available_cams(self) -> list:
+        """
+        List all available camera devices.
+
+        Returns: list: A list of indices of available camera devices.
+        """
+
+        index = 0
+        arr = []
+        while True:
+            cap = cv2.VideoCapture(index, cv2.CAP_DSHOW)
+            if not cap.isOpened(): break
+
+            arr.append(index)
+            cap.release()
+            index += 1
+        return arr
+
     def add_cam(self, cam_id: int) -> None:
         """
         Add a cam by its ID.
