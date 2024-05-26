@@ -12,6 +12,8 @@ setup(
     author_email = "snatev@proton.me",
     url = "https://github.com/snatev/cam-manager",
 
+    include_package_data = True,
+
     packages = find_packages(),
     install_requires = [
         "opencv-python"
