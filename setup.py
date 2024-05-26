@@ -1,7 +1,10 @@
 from setuptools import setup, find_packages
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
-    version = "0.1.3",
+    version = "0.2.0",
     name = "cam_manager",
     description = "A camera management library to easily handle cameras with OpenCV.",
 
@@ -12,12 +15,8 @@ setup(
     author_email = "snatev@proton.me",
     url = "https://github.com/snatev/cam-manager",
 
-    include_package_data = True,
-
     packages = find_packages(),
-    install_requires = [
-        "opencv-python"
-    ],
+    install_requires = requirements,
 
     classifiers = [
         "Operating System :: OS Independent",

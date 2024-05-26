@@ -1,3 +1,7 @@
 ex.py
+
 .vscode
 __pycache__
+
+yolov8n.pt
+yolov8n-seg.pt
