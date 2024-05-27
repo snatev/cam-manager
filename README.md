@@ -1,79 +1,101 @@
-CamManager - Methods
+#MANAGER
+--------------------
+In the CamManager init, switch "is_ai" parameter to use the default AI process.
+You can also change the AI mode on the CamManager init with the "ai_mode" parameter. Possible options are: "detection", "segmentation"
 
-__init__()
-Initializes a CamManager instance.
+#INFO
+--------------------
+get_available_cams
+=====
+Description: Get all available camera devices.
+Parameters: capture_method: The method used to capture the video stream (default is cv2.CAP_DSHOW).
+Returns: list: A list of indices of available camera devices.
 
---------------------------------------------------
+get_active_cam
+=====
+Description: Get the currently active camera ID.
+Returns: int: The ID of the currently active camera. If no active camera, a message is printed.
 
-add_cam(cam_id: int) -> None
-Adds a camera by its ID.
+get_all_added_cams
+=====
+Description: Get a list of all added camera IDs.
+Returns: list: A list of all added camera IDs. If no cameras have been added, a message is printed.
 
+#EFFECTS
+--------------------
+apply_gray
+=====
+Description: Convert the frame to grayscale.
+Parameters: frame: The input frame to be converted.
+Returns: The grayscale frame.
+
+apply_canny
+=====
+Description: Apply Canny edge detection to the frame.
 Parameters:
-cam_id (int): The ID of the camera to be added.
+    frame: The input frame for edge detection.
+    threshold1 (int, optional): The first threshold for the hysteresis procedure. Default is 100.
+    threshold2 (int, optional): The second threshold for the hysteresis procedure. Default is 200.
+Returns: The frame with Canny edge detection applied.
 
-Returns: None
+apply_sepia
+=====
+Description: Apply sepia effect to the frame.
+Parameters: frame: The input frame for the sepia effect.
+Returns: The frame with the sepia effect applied.
 
---------------------------------------------------
+apply_emboss
+=====
+Description: Apply emboss effect to the frame.
+Parameters: frame: The input frame for the emboss effect.
+Returns: The frame with the emboss effect applied.
 
-release_cam(cam_id: int) -> None
-Releases a specific camera by its ID.
+apply_negative
+=====
+Description: Apply negative effect to the frame.
+Parameters: frame: The input frame for the negative effect.
+Returns: The frame with the negative effect applied.
 
+#CONTROL
+--------------------
+add_cam
+=====
+Description: Add a camera by its ID.
+Paramters:
+    cam_id (int): The ID of the camera to be added.
+    capture_method: The method used to capture the video stream (default is cv2.CAP_DSHOW).
+
+release_cam
+=====
+Description: Release a specific camera by its ID.
+Parameters: cam_id (int): The ID of the camera to be released.
+
+release_all_cams
+=====
+Description: Release all cameras.
+
+switch_active_cam
+=====
+Description: Switch the active camera to the specified ID.
+Parameters: cam_id (int): The ID of the camera to be set as active.
+
+get_frame
+=====
+Description: Get a frame from a specific camera or the active camera.
+Parameters: cam_id (int, optional): The ID of the camera to get the frame from. If None, the frame is captured from the active camera (default is None).
+Returns: The captured frame from the specified or active camera, or None if failed.
+
+capture_image
+=====
+Description: Capture an image from a specific camera or the active camera and save it to a file.
 Parameters:
-cam_id (int): The ID of the camera to be released.
+    cam_id (int, optional): The ID of the camera to capture the image from. If None, the image is captured from the active camera (default is None).
+    filename (str, optional): The name of the file to save the captured image (default is "capture.jpg").
 
-Returns: None
-
---------------------------------------------------
-
-release_all_cams() -> None
-Releases all added cameras.
-
-Returns: None
-
---------------------------------------------------
-
-switch_active_cam(cam_id: int) -> None
-Switches the active camera to the specified ID.
-
-Parameters:
-cam_id (int): The ID of the camera to be set as active.
-
-Returns: None
-
---------------------------------------------------
-
-get_active_cam() -> int
-Gets the currently active camera ID.
-
-Returns:
-int: The ID of the currently active camera.
-
---------------------------------------------------
-
-get_all_cams() -> list
-Gets a list of all added camera IDs.
-
-Returns:
-list: A list of all added camera IDs.
-
---------------------------------------------------
-
-get_frame(cam_id: int = None) -> any
-Gets a frame from a specific camera or the active camera.
-
-Parameters:
-cam_id (int, optional): The ID of the camera to get the frame from. If None, the frame is captured from the active camera. Default is None.
-
-Returns:
-frame (any): The captured frame from the specified or active camera, or None if failed.
-
---------------------------------------------------
-
-capture_image(cam_id: int = None, filename: str = "capture.jpg") -> None
-Captures an image from a specific camera or the active camera and saves it to a file.
-
-Parameters:
-cam_id (int, optional): The ID of the camera to capture the image from. If None, the image is captured from the active camera. Default is None.
-filename (str, optional): The name of the file to save the captured image. Default is "capture.jpg".
-
-Returns: None
+#AI
+--------------------
+add_ai_to_frame
+=====
+Description: Add AI-based object detection or segmentation to the frame.
+Parameters: frame (ndarray): The input frame for processing.
+Returns: The frame with the AI method applied.

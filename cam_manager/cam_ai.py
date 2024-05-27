@@ -3,27 +3,27 @@ import math
 from ultralytics import YOLO
 
 class CamAIMixin:
-    def __init__(self):
-        self.model = YOLO("yolov8n.pt")
+    def __init__(self, mode: str = "detection") -> None:
+        if mode == "detection":
+            self.mode = "detection"
+            self.model = YOLO("yolov8n.pt")
+        if mode == "segmentation":
+            self.mode = "segmentation"
+            self.model = YOLO("yolov8n-seg.pt")
 
-    def add_ai_to_frame(self, frame, mode = "detection") -> tuple:
+    def add_ai_to_frame(self, frame) -> tuple:
         """
         Add AI-based object detection or segmentation to the frame.
-        Parameters:
-            frame (ndarray): The input frame for processing.
-            mode (str): The mode of processing, either "detection" or "segmentation".
+        Parameters: frame (ndarray): The input frame for processing.
         """
-
-        if mode == "detection": self.model = YOLO("yolov8n.pt")
-        elif mode == "segmentation": self.model = YOLO("yolov8n-seg.pt")
 
         ai_data = []
         names = self.model.names
         results = self.model(frame, stream=True)
 
         for r in results:
-            if mode == "detection": self.process_detections(r, frame, names, ai_data)
-            elif mode == "segmentation": self.process_segmentations(r, frame, names, ai_data)
+            if self.mode == "detection": self.process_detections(r, frame, names, ai_data)
+            elif self.mode == "segmentation": self.process_segmentations(r, frame, names, ai_data)
 
         return frame, ai_data
 
