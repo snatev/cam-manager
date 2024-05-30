@@ -1,4 +1,5 @@
 import cv2
+import pygetwindow as gw
 
 class CamInfoMixin:
     def get_available_cams(self, capture_method = cv2.CAP_DSHOW) -> list:
@@ -21,6 +22,16 @@ class CamInfoMixin:
 
         if not arr: print("No cams available.")
         return arr
+
+    def get_available_windows(self) -> list:
+            """
+            Get all available windows.
+            Returns: list: A list of all available windows.
+            """
+            windows = gw.getAllTitles()
+            if not windows:
+                print("No windows available.")
+            return windows
 
     def get_active_cam(self) -> int:
         """

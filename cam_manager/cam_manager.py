@@ -12,6 +12,7 @@ class CamManager(CamInfoMixin, CamControlMixin, CamEffectsMixin):
         super().__init__()
 
         self.cams = {}
+        self.tricky_cams = {}
         self.active_cam_id = None
 
         if is_ai:
