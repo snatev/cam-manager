@@ -4,7 +4,7 @@ from cam_manager.cam_effects import CamEffectsMixin
 
 class CamManager(CamInfoMixin, CamControlMixin, CamEffectsMixin):
     def __init__(self, is_ai = False, ai_mode = "detection"):
-        possible_ai_modes = ["detection", "segmentation"]
+        possible_ai_modes = ["detection", "segmentation", "classify", "pose"]
         if ai_mode not in possible_ai_modes:
             ai_mode = "detection"
             print(f"Invalid AI mode. Possible values are {possible_ai_modes}")

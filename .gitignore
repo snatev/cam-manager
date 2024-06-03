@@ -5,3 +5,5 @@ __pycache__
 
 yolov8n.pt
 yolov8n-seg.pt
+yolov8n-cls.pt
+yolov8n-pose.pt

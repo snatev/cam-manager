@@ -1,10 +1,9 @@
 import cv2
 import mss
 import numpy as np
-import pygetwindow as gw
 
 class CamControlMixin:
-    def add_cam(self, cam_id: int, capture_method=cv2.CAP_DSHOW, tricky_window_title: str = None) -> None:
+    def add_cam(self, cam_id: int, capture_method = cv2.CAP_DSHOW, tricky_window_title: str = None) -> None:
         """
         Add a cam by its ID or a "tricky cam" by a window title.
         Parameters:
@@ -15,11 +14,10 @@ class CamControlMixin:
 
         if tricky_window_title:
             if tricky_window_title not in self.tricky_cams:
-                window = gw.getWindowsWithTitle(tricky_window_title)
+                window = self.get_window_by_title(tricky_window_title)
                 if window:
                     self.tricky_cams[tricky_window_title] = window[0]
-                    if self.active_cam_id is None:
-                        self.active_cam_id = tricky_window_title
+                    if self.active_cam_id is None: self.active_cam_id = tricky_window_title
                     print(f"Tricky cam [{tricky_window_title}] added successfully.")
                 else: print(f"Window with title [{tricky_window_title}] not found.")
             else: print(f"Tricky cam [{tricky_window_title}] is already added.")
@@ -29,8 +27,7 @@ class CamControlMixin:
                 if not cap.isOpened(): print(f"Failed to open cam [{cam_id}].")
                 else:
                     self.cams[cam_id] = cap
-                    if self.active_cam_id is None:
-                        self.active_cam_id = cam_id
+                    if self.active_cam_id is None: self.active_cam_id = cam_id
                     print(f"Cam [{cam_id}] added successfully.")
             else: print(f"Cam [{cam_id}] is already added.")
 
@@ -45,17 +42,15 @@ class CamControlMixin:
         if tricky_window_title:
             if tricky_window_title in self.tricky_cams:
                 del self.tricky_cams[tricky_window_title]
-                if self.active_cam_id == tricky_window_title:
-                    self.active_cam_id = None
+                if self.active_cam_id == tricky_window_title: self.active_cam_id = None
                 print(f"Tricky cam [{tricky_window_title}] released successfully.")
-            else: print(f"Tricky cam [{tricky_window_title}] does not exist.")
+            else:print(f"Tricky cam [{tricky_window_title}] does not exist.")
         else:
             if cam_id in self.cams:
                 self.cams[cam_id].release()
                 del self.cams[cam_id]
 
-                if self.active_cam_id == cam_id:
-                    self.active_cam_id = None
+                if self.active_cam_id == cam_id: self.active_cam_id = None
                 print(f"Cam [{cam_id}] released successfully.")
             else: print(f"Cam [{cam_id}] does not exist.")
 
@@ -100,8 +95,7 @@ class CamControlMixin:
             if self.active_cam_id is None:
                 print("No active cam.")
                 return None
-            if isinstance(self.active_cam_id, int):
-                cam_id = self.active_cam_id
+            if isinstance(self.active_cam_id, int): cam_id = self.active_cam_id
             else: tricky_window_title = self.active_cam_id
 
         if tricky_window_title:

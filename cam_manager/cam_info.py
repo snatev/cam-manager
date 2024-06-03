@@ -1,7 +1,13 @@
 import cv2
-import pygetwindow as gw
+import platform
+if platform.system() == "Windows": import pygetwindow as gw
+if platform.system() == "Linux": from Xlib import X, display
 
 class CamInfoMixin:
+    def __init__(self):
+        if platform.system() == "Linux": self.user_os = "Linux"
+        if platform.system() == "Windows": self.user_os = "Windows"
+
     def get_available_cams(self, capture_method = cv2.CAP_DSHOW) -> list:
         """
         Get all available cam devices.
@@ -23,15 +29,35 @@ class CamInfoMixin:
         if not arr: print("No cams available.")
         return arr
 
-    def get_available_windows(self) -> list:
-            """
-            Get all available windows.
-            Returns: list: A list of all available windows.
-            """
-            windows = gw.getAllTitles()
-            if not windows:
-                print("No windows available.")
-            return windows
+    def get_all_window_titles(self):
+        if self.user_os == "Linux":
+            d = display.Display()
+            root = d.screen().root
+            window_ids = root.get_full_property(d.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
+
+            titles = []
+            for window_id in window_ids:
+                window = d.create_resource_object('window', window_id)
+                titles.append(window.get_wm_name())
+            return titles
+        if self.user_os == "Windows":
+            titles = []
+            for window in gw.getAllWindows():
+                titles.append(window.title)
+            return titles
+
+    def get_window_by_title(self, title):
+        if self.user_os == "Linux":
+            d = display.Display()
+            root = d.screen().root
+
+            windowIDs = root.get_full_property(d.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
+            for windowID in windowIDs:
+                window = d.create_resource_object('window', windowID)
+                if window.get_wm_name() == title: return window
+            return None
+        if self.user_os == "Windows":
+            return gw.getWindowsWithTitle(title)
 
     def get_active_cam(self) -> int:
         """
