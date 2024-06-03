@@ -29,8 +29,9 @@ class CamControlMixin:
                 else:
                     self.cams[cam_id] = cap
 
-                    cam_settings = Settings(f"cam_settings_{cam_id}.json")
-                    cam_settings.load_settings(cap)
+                    if self.load_settings:
+                        cam_settings = Settings(f"cam_settings_{cam_id}.json")
+                        cam_settings.load_settings(cap)
 
                     if self.active_cam_id is None: self.active_cam_id = cam_id
                     print(f"Cam [{cam_id}] added successfully.")
