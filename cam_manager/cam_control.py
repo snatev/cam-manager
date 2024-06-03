@@ -1,6 +1,7 @@
 import cv2
 import mss
 import numpy as np
+from cam_manager.cam_settings import CamSettingsMixin as Settings
 
 class CamControlMixin:
     def add_cam(self, cam_id: int, capture_method = cv2.CAP_DSHOW, tricky_window_title: str = None) -> None:
@@ -27,6 +28,10 @@ class CamControlMixin:
                 if not cap.isOpened(): print(f"Failed to open cam [{cam_id}].")
                 else:
                     self.cams[cam_id] = cap
+
+                    cam_settings = Settings(f"cam_settings_{cam_id}.json")
+                    cam_settings.load_settings(cap)
+
                     if self.active_cam_id is None: self.active_cam_id = cam_id
                     print(f"Cam [{cam_id}] added successfully.")
             else: print(f"Cam [{cam_id}] is already added.")
