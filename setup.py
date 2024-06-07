@@ -4,7 +4,7 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
-    version = "0.3.2",
+    version = "0.3.3",
     name = "cam_manager",
     description = "A camera management library with a wide range of options.",
 

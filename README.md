@@ -5,7 +5,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_ai
 
 ### __init__
-"""
+
+        """
         Initialize the CamAIMixin class with a specified AI processing mode.
 
         Parameters:
@@ -13,7 +14,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### add_ai_to_frame
-"""
+
+        """
         Add AI-based object detection, segmentation, classification, or pose estimation to the frame.
 
         Parameters:
@@ -24,7 +26,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### process_detections
-"""
+
+        """
         Process detections and draw bounding boxes on the frame.
 
         Parameters:
@@ -35,7 +38,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### process_segmentations
-"""
+
+        """
         Process segmentations and draw masks on the frame.
 
         Parameters:
@@ -46,7 +50,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### process_classifications
-"""
+
+        """
         Process classifications and add labels to the frame.
 
         Parameters:
@@ -57,7 +62,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### process_pose_estimations
-"""
+
+        """
         Process pose estimations and draw keypoints on the frame.
 
         Parameters:
@@ -70,7 +76,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_control
 
 ### add_cam
-"""
+
+        """
         Add a cam by its ID or a tricky cam by a window title.
 
         Parameters:
@@ -80,7 +87,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### release_cam
-"""
+
+        """
         Release a specific cam by its ID or a tricky cam by its window title.
 
         Parameters:
@@ -89,12 +97,14 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### release_all_cams
-"""
+
+        """
         Release all cams and tricky cams.
         """
 
 ### switch_active_cam
-"""
+
+        """
         Switch the active cam to the specified ID or tricky cam to the specified window title.
 
         Parameters:
@@ -103,7 +113,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### get_frame
-"""
+
+        """
         Get a frame from a specific cam or tricky cam.
 
         Parameters:
@@ -115,7 +126,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### capture_image
-"""
+
+        """
         Capture an image from a specific cam or tricky cam and save it to a file.
 
         Parameters:
@@ -127,7 +139,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_effects
 
 ### apply_gray
-"""
+
+        """
         Convert frame to grayscale.
 
         Parameters:
@@ -138,7 +151,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### apply_canny
-"""
+
+        """
         Apply Canny edge detection to the frame.
 
         Parameters:
@@ -151,7 +165,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### apply_sepia
-"""
+
+        """
         Apply sepia effect to the frame.
 
         Parameters:
@@ -162,7 +177,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### apply_emboss
-"""
+
+        """
         Apply emboss effect to the frame.
 
         Parameters:
@@ -173,7 +189,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### apply_negative
-"""
+
+        """
         Apply negative effect to the frame.
 
         Parameters:
@@ -186,12 +203,14 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_info
 
 ### __init__
-"""
+
+        """
         Initialize the CamInfoMixin class and set the user operating system.
         """
 
 ### get_available_cams
-"""
+
+        """
         Get all available cam devices.
 
         Parameters:
@@ -202,7 +221,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### get_all_window_titles
-"""
+
+        """
         Get titles of all open windows.
 
         Returns:
@@ -210,7 +230,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### get_window_by_title
-"""
+
+        """
         Get a window by its title.
 
         Parameters:
@@ -221,7 +242,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### get_active_cam
-"""
+
+        """
         Get the currently active cam ID.
 
         Returns:
@@ -229,7 +251,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### get_all_added_cams
-"""
+
+        """
         Get a list of all added cam IDs.
 
         Returns:
@@ -239,7 +262,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_manager
 
 ### __init__
-"""
+
+        """
         Initialize the CamManager class.
 
         Parameters:
@@ -251,7 +275,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
 ## Cam_settings
 
 ### __init__
-"""
+
+        """
         Initialize the CamSettingsMixin class.
 
         Parameters:
@@ -259,7 +284,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### save_settings
-"""
+
+        """
         Save the current settings of the camera to a file.
 
         Parameters:
@@ -267,7 +293,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### load_settings
-"""
+
+        """
         Load settings from a file and apply them to the camera.
 
         Parameters:
@@ -278,7 +305,8 @@ A comprehensive library for managing cameras, including AI-based features, contr
         """
 
 ### focus_cam
-"""
+
+        """
         Set the focus value of a specified camera.
 
         Parameters:
